@@ -1,0 +1,15 @@
+plugins {
+    id 'lifecycle-base'
+}
+
+System.out.println("Executing build.gradle")
+
+def helloArchive = zipTree(file("hello.zip"))
+tasks.create("makeArchive", Zip) {
+    System.out.println("Files in the archive: " + helloArchive.files)
+
+    archiveFileName = "archive.zip"
+    destinationDirectory = layout.buildDirectory
+
+    from helloArchive
+}
